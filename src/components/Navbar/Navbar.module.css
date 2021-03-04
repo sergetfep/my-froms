@@ -1,0 +1,18 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid black;
+  background-color: teal;
+  margin-bottom: 10px;
+}
+
+.navLink {
+  display: flex;
+  margin: 10px;
+  border-left: 1px solid black;
+}
+
+.navLink a {
+  color: white;
+  text-decoration: none;
+}

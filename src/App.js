@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Navbar } from "./components/Navbar/Navbar";
+import { Form1 } from "./components/Forms/Form1/Form1";
+import { FormInHooks } from "./components//Forms/Form2/Form2";
+import { Form3 } from "./components/Forms/Form3/Form3";
 
-function App() {
+// const Form1 = () => "Form1";
+// const Form2 = () => "Form2";
+// const Form3 = () => "Soon";
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path="/form1" component={Form1} />
+          <Route exact path="/form2" component={FormInHooks} />
+          <Route exact path="/form3" component={Form3} />
+        </Switch>
+      </Router>
+    </>
   );
 }
-
-export default App;
