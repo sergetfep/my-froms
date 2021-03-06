@@ -23,6 +23,8 @@ export const Form3 = () => {
       }
     }
 
+    console.log(styles);
+
     if (!isValid) {
       return;
     }
@@ -49,7 +51,9 @@ export const Form3 = () => {
           validation="required|min:6|max:12"
           onChange={handleChange}
         />
-        <button type="submit">Login</button>
+        <button className={styles.form3Button} type="submit">
+          Login
+        </button>
       </form>
     </div>
   );
