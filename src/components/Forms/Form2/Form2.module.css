@@ -84,3 +84,19 @@ button:hover {
   font-style: italic;
   color: #b60000;
 }
+
+.marginRightAndTop10 {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.Form2Button {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  padding: 0.8em 1em calc(0.8em + 3px);
+  border-radius: 3px;
+  background: rgb(199, 64, 120);
+  /* box-shadow: 0 -3px rgb(53, 167, 110) inset; */
+  transition: 0.2s;
+}

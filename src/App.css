@@ -31,3 +31,7 @@ form > * {
   transform: translate(-50%, 0);
   margin-bottom: 20px;
 } */
+
+span {
+  text-align: start;
+}
