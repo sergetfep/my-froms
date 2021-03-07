@@ -12,6 +12,8 @@ export function FormInHooks() {
     radio: '',
   });
 
+  let [showData, setShowData] = useState(false);
+
   const { form } = document.forms;
 
   const handleChange = (e) => {
@@ -30,6 +32,7 @@ export function FormInHooks() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    document.getElementById('MyButton').style.visibility = 'visible';
     createFormData(data);
   };
 
@@ -42,6 +45,8 @@ export function FormInHooks() {
       formData.append(entry[0], entry[1]);
     });
     sendToServer(formData);
+    // console.log('formData', JSON.stringify(formData));
+    // console.log('data', JSON.stringify(data));
   };
 
   const sendToServer = (formData) => {
@@ -55,9 +60,14 @@ export function FormInHooks() {
       })
       .then((res) => {
         if (res.status) {
-          alert('Запрос на сервер отправлен!');
+          // alert('Запрос на сервер отправлен!');
+          console.log('Запрос на сервер отправлен!');
         }
       });
+  };
+
+  const onClickToHide = () => {
+    setShowData(!showData);
   };
 
   return (
@@ -66,12 +76,7 @@ export function FormInHooks() {
       <form onSubmit={onSubmit}>
         <label>
           <span>First Name: </span>
-          <input
-            name="text1"
-            value={data.text1}
-            onChange={handleChange}
-            span="First Name: "
-          />
+          <input name="text1" value={data.text1} onChange={handleChange} />
         </label>
         <label>
           <span>Last Name: </span>
@@ -146,10 +151,23 @@ export function FormInHooks() {
           Send
         </button>
       </form>
+      <button className={styles.hide} id="MyButton" onClick={onClickToHide}>
+        {showData ? 'Hide' : 'Show'}
+      </button>
+      {showData && (
+        <div>
+          <div className={styles.show}>
+            {showData && JSON.stringify(data, null, '\t')}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
+/////////////////////
+/////////////////////
+/////////////////////
 // const MyFormElementHOC = (Component, props) => {
 //   return (
 //     <>
@@ -298,3 +316,8 @@ export function FormInHooks() {
 ///////
 // console.log('Is sended');
 // console.log('data', data);
+
+// useEffect(() => {
+//   // effect
+//   console.log('swwww');
+// }, [showData]);
