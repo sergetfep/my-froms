@@ -1,0 +1,11 @@
+{
+  "items": [
+    { "text1": "Antonio" },
+    { "text2": "Banderas" },
+    { "textarea": "useless man" },
+    { "select": "2" },
+    { "multipleSelect": "2,3" },
+    { "checkbox": "true" },
+    { "radio": "1" }
+  ]
+}

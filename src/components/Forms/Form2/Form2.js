@@ -15,6 +15,10 @@ export function FormInHooks() {
   let [showData, setShowData] = useState(false);
 
   const { form } = document.forms;
+  let [loadMock, setLoadMock] = useState({});
+  let [dataIsLoaded, setDataIsLoaded] = useState(false);
+  const [clickedSubmit, setClickedSubmit] = useState(false);
+  let [count, setCount] = useState(5);
 
   const handleChange = (e) => {
     let { name, value, type, selectedOptions, checked } = e.currentTarget;
@@ -32,8 +36,9 @@ export function FormInHooks() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    document.getElementById('MyButton').style.visibility = 'visible';
     createFormData(data);
+    setClickedSubmit(true);
+    setInterval(() => setCount(--count), 1000);
   };
 
   const createFormData = (data) => {
@@ -50,25 +55,49 @@ export function FormInHooks() {
   };
 
   const sendToServer = (formData) => {
-    fetch('http://localhost:4000', {
-      method: 'POST',
-      body: formData,
-      headers: { my_header: 'something', my_header2: 'something2' },
+    // fetch('http://localhost:4000', {
+    //   method: 'POST',
+    //   body: formData,
+    //   headers: { my_header: 'something', my_header2: 'something2' },
+    // })
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((res) => {
+    //     if (res.status) {
+    //       // alert('Запрос на сервер отправлен!');
+    //       console.log('Запрос на сервер отправлен!');
+    //     }
+    //   });
+    fetch('http://localhost:3000/data.json', {
+      method: 'GET',
+      headers: { my_header: 'something' },
+      // body: JSON.stringify(load),
     })
       .then((response) => {
         return response.json();
       })
-      .then((res) => {
-        if (res.status) {
-          // alert('Запрос на сервер отправлен!');
-          console.log('Запрос на сервер отправлен!');
-        }
+      .then((load) => {
+        // console.log('Success', load);
+        // loadMock = JSON.stringify(load, null, '\t');
+        // loadMock = load;
+        // console.log(loadMock);
+        setLoadMock(load);
+        // console.log(loadMock);
+
+        setTimeout(() => {
+          setDataIsLoaded(true);
+          document.getElementById('MyButton').style.visibility = 'visible';
+        }, count * 1000);
       });
   };
 
   const onClickToHide = () => {
     setShowData(!showData);
   };
+
+  //const listItems = loadMock.items.map((a, i) => <li key={i}>{a}</li>);
+  //console.log('ff', Object.values(loadMock.items));
 
   return (
     <div className="wrapper">
@@ -151,13 +180,25 @@ export function FormInHooks() {
           Send
         </button>
       </form>
+      {clickedSubmit && !dataIsLoaded && (
+        <p>Ожидание получения данных: {count} сек</p>
+      )}
       <button className={styles.hide} id="MyButton" onClick={onClickToHide}>
-        {showData ? 'Hide' : 'Show'}
+        {dataIsLoaded && showData ? 'Hide' : 'Show'}
       </button>
-      {showData && (
+      {dataIsLoaded && showData && (
         <div>
           <div className={styles.show}>
-            {showData && JSON.stringify(data, null, '\t')}
+            {/* {showData && JSON.stringify(data, null, '\t')} */}
+            <ul>
+              {
+                showData && loadMock.map((item) => <div>{item}</div>)
+                // loadMock.map((a, i) =>{' '}
+
+                //   return <li key={i}>{a}</li>;
+                // })
+              }
+            </ul>
           </div>
         </div>
       )}
