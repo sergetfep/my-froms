@@ -43,3 +43,16 @@ export function FormInHooks() {
     </div>
   );
 }
+
+// {
+//   "items": [
+//     { "text": "Antony" },
+//     { "text": "Anna" },
+//     { "text": "John" },
+//     { "text": "Kate" }
+//   ]
+// }
+
+// {
+//   "items": ["Antony", "Anna", "John", "Kate"]
+// }

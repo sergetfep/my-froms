@@ -1,6 +1,6 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import styles from "./Navbar.module.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styles from './Navbar.module.css';
 
 export const Navbar = () => {
   return (
@@ -13,6 +13,9 @@ export const Navbar = () => {
       </div>
       <div className={styles.navLink}>
         <NavLink to="/form3">Another Form with hooks</NavLink>
+      </div>
+      <div className={styles.navLink}>
+        <NavLink to="/plainResult">Plain Result</NavLink>
       </div>
       {/* <div className={styles.navLink}>
         <NavLink to="/form4">To do from Minki</NavLink>

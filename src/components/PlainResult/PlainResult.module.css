@@ -1,0 +1,17 @@
+.buttons {
+  width: 60%;
+  height: 90px;
+}
+
+.content {
+  background: white;
+  margin: 10px;
+  padding: 10px;
+  white-space: pre-wrap;
+}
+
+.enterJSON,
+.enterList {
+  padding: 10px;
+  margin: 10px;
+}

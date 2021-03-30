@@ -189,12 +189,12 @@ export function FormInHooks() {
       {dataIsLoaded && showData && (
         <div>
           <div className={styles.show}>
+            {showData && JSON.stringify(loadMock, null, '\t')}
             {/* {showData && JSON.stringify(data, null, '\t')} */}
             <ul>
               {
-                showData && loadMock.map((item) => <div>{item}</div>)
+                // showData && loadMock.map((item) => <div>{item}</div>)
                 // loadMock.map((a, i) =>{' '}
-
                 //   return <li key={i}>{a}</li>;
                 // })
               }
